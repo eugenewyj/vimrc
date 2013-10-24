@@ -1,14 +1,17 @@
 set nocompatible                " be improved
 filetype off                    " required!
-filetype plugin indent off		" required!
+filetype plugin indent off	" required!
+
+" 设置编码
+set encoding=utf-8
+set langmenu=zh_CN.UTF-8
+language message zh_CN.UTF-8
 
 " Vundle插件设置
 if has("win32")
   set rtp+=%HOME%/vimfiles/bundle/vundle/
-  set rtp+=%GOROOT%/misc/vim
 else
   set rtp+=~/.vim/bundle/vundle/
-  set rtp+=$GOROOT/misc/vim
 endif
 call vundle#rc()
 
@@ -27,6 +30,9 @@ Bundle 'gmarik/vundle'
 
 " ==== 下面是定制的插件:
 
+" ---- FencView插件（用于探测文件编码）
+Bundle 'vim-scripts/FencView.vim'
+
 " ---- NERDTree插件及其配置。
 Bundle 'scrooloose/nerdtree'
 nmap <F2> :NERDTreeToggle <CR>
@@ -35,6 +41,22 @@ nmap <F2> :NERDTreeToggle <CR>
 Bundle 'altercation/vim-colors-solarized'
 set background=dark
 colorscheme solarized
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Courier\ New\ 11
+  elseif has("gui_photon")
+    set guifont=Courier\ New:s11
+  elseif has("gui_kde")
+    set guifont=Courier\ New/11/-1/5/50/0/0/0/1/0
+  elseif has("x11")
+    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+  else
+    set guifont=Consolas:h14:cDEFAULT
+  endif
+
+  set guioptions-=T		" 隐藏工具栏
+  " set guioptions-=m		" 隐藏菜单
+endif
 
 " ---- golang官方插件设置
 if has("win32")
@@ -47,4 +69,4 @@ Bundle 'Blackrush/vim-gocode'
 
 
 filetype plugin indent on     	" required!
-syntax enable
+syntax on
