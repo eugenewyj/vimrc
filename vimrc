@@ -9,6 +9,22 @@ else
 endif
 call vundle#rc()
 
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" NERDTree插件及其配置
+Bundle 'scrooloose/nerdtree'
+nmap <F2> :NERDTreeToggle <CR>
+
+" solarized主题插件及其配置
+Bundle 'altercation/vim-colors-solarized'
+syntax enable
+set background=dark
+colorscheme solarized
+
 filetype plugin indent on     	" required!
  "
  " Brief help
