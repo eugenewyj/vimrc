@@ -15,18 +15,20 @@ Eugene Wang's Vim 个性化配置
 
  * Windows:
 
-        $ git clone https://github.com/fengbaoxp/vimrc.git ~/vimfiles
-        $ cd ~/vimfiles
+        $ git clone https://github.com/fengbaoxp/vimrc.git %HOME%/vimfiles
+        $ cd %HOME%/vimfiles
         $ git submodule update --init
 
 2. 安装.vimrc(linux)或_vimrc(windows)
 
  * Linux:
 
+        $ cd ~/.vim
         $ ./install.sh
 
  * Windows:
 
+        > cd %HOME%/vimfiles
         > install.bat
 
 插件列表
