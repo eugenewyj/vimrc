@@ -30,6 +30,8 @@ Bundle 'gmarik/vundle'
 
 " ==== 下面是定制的插件:
 
+imap <M-/> <C-x><C-o>
+
 " ---- FencView插件（用于探测文件编码）
 Bundle 'vim-scripts/FencView.vim'
 
