@@ -65,6 +65,8 @@ if has("win32")
 else
   set rtp+=$GOROOT/misc/vim
 endif
+au FileType go au BufWritePre <buffer> Fmt
+
 " ---- gocode插件及其配置
 Bundle 'Blackrush/vim-gocode'
 
