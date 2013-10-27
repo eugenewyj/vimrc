@@ -30,8 +30,6 @@ Bundle 'gmarik/vundle'
 
 " ==== 下面是定制的插件:
 
-imap <M-/> <C-x><C-o>
-
 " ---- FencView插件（用于探测文件编码）
 Bundle 'vim-scripts/FencView.vim'
 
@@ -60,6 +58,9 @@ if has("gui_running")
   set guioptions-=T		" 隐藏工具栏
   " set guioptions-=m		" 隐藏菜单
 endif
+
+" ---- YouCompleteMe插件及设置
+Bundle 'Valloric/YouCompleteMe'
 
 " ---- golang官方插件设置
 if has("win32")
