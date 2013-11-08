@@ -56,6 +56,7 @@ Bundle 'vim-scripts/FencView.vim'
 "----------NERDTree插件及其配置----------
 Bundle 'scrooloose/nerdtree'
 nmap <F2> :NERDTreeToggle <CR>
+au VimEnter * NERDTreeToggle
 
 "----------solarized主题插件----------
 Bundle 'altercation/vim-colors-solarized'
@@ -81,11 +82,11 @@ Bundle 'Blackrush/vim-gocode'
 set background=dark
 if has("gui_running")
   if has("gui_gtk2")
-    set guifont=Courier\ New\ 11
+    set guifont=Courier\ New\ 12
   elseif has("gui_photon")
-    set guifont=Courier\ New:s11
+    set guifont=Courier\ New:s12
   elseif has("gui_kde")
-    set guifont=Courier\ New/11/-1/5/50/0/0/0/1/0
+    set guifont=Courier\ New/12/-1/5/50/0/0/0/1/0
   elseif has("x11")
     set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
   else
