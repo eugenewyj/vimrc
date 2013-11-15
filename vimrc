@@ -58,11 +58,9 @@ Bundle 'scrooloose/nerdtree'
 nmap <F2> :NERDTreeToggle <CR>
 au VimEnter * NERDTreeToggle
 
-
 "----------Molokai主题插件----------
 Bundle 'tomasr/molokai'
 colorscheme molokai
-
 
 "----------golang官方插件设置----------
 if has("win32")
@@ -77,15 +75,14 @@ autocmd FileType go setlocal shiftwidth=4 tabstop=4
 let g:gocode_gofmt_tabs=' -tabs=true'
 let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
-"----------YouCompleteMe插件及配置----------
-"Bundle 'Valloric/YouCompleteMe'
-
 "----------supertab插件及配置----------
 Bundle 'ervandew/supertab'
 
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
 
+"----------powerline插件及配置----------
+Bundle 'Lokaltog/powerline'
 
 "===================================================
 " 第三部分：主题配置
