@@ -77,6 +77,9 @@ Bundle 'Blackrush/vim-gocode'
 "----------YouCompleteMe插件及配置----------
 "Bundle 'Valloric/YouCompleteMe'
 
+"----------supertab插件及配置----------
+Bundle 'ervandew/supertab'
+
 
 "===================================================
 " 第三部分：主题配置
