@@ -11,7 +11,7 @@
 
 set nocompatible                " be improved
 filetype off                    " required!
-filetype plugin indent off	" required!
+filetype plugin indent off		" required!
 
 
 
@@ -58,9 +58,11 @@ Bundle 'scrooloose/nerdtree'
 nmap <F2> :NERDTreeToggle <CR>
 au VimEnter * NERDTreeToggle
 
-"----------solarized主题插件----------
-Bundle 'altercation/vim-colors-solarized'
-colorscheme solarized
+
+"----------Molokai主题插件----------
+Bundle 'tomasr/molokai'
+colorscheme molokai
+
 
 "----------golang官方插件设置----------
 if has("win32")
