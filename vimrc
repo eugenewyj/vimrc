@@ -75,8 +75,13 @@ autocmd FileType go setlocal shiftwidth=4 tabstop=4
 let g:gocode_gofmt_tabs=' -tabs=true'
 let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
-"----------supertab插件及配置----------
-Bundle 'ervandew/supertab'
+if has("win32")
+  "----------supertab插件及配置(windows)----------
+  Bundle 'ervandew/supertab'
+else
+  "----------YouCompleteMe插件及配置(linux)----------
+  Bundle 'Valloric/YouCompleteMe'		  
+endif
 
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
