@@ -67,15 +67,15 @@ else
   set rtp+=$GOROOT/misc/vim
 endif
 
-"----------gocode插件及其配置----------
+"----------golang相关插件及其配置----------
 Bundle 'Blackrush/vim-gocode'
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 
 let g:gocode_gofmt_tabs=' -tabs=true'
 let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
 "----------supertab插件及配置----------
-Bundle 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType="context"
+"Bundle 'ervandew/supertab'
+"let g:SuperTabDefaultCompletionType="context"
 
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
