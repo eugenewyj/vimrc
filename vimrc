@@ -61,13 +61,14 @@ Bundle 'tomasr/molokai'
 colorscheme molokai
 
 "----------golang官方插件设置----------
-if has("win32")
-  set rtp+=%GOROOT%/misc/vim
-else
-  set rtp+=$GOROOT/misc/vim
-endif
+"if has("win32")
+"  set rtp+=%GOROOT%/misc/vim
+"else
+"  set rtp+=$GOROOT/misc/vim
+"endif
 
 "----------golang相关插件及其配置----------
+Bundle 'cespare/vim-golang'
 Bundle 'Blackrush/vim-gocode'
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 
 let g:gocode_gofmt_tabs=' -tabs=true'
