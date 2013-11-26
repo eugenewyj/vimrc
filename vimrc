@@ -48,10 +48,7 @@ call vundle#rc()
 " NOTE: comments after Bundle command are not allowed..
 
 " 让Vundle插件管理Vundle插件本身。
-Bundle 'gmarik/vundle'			 
-
-"----------FencView插件（用于探测文件编码）----------
-Bundle 'vim-scripts/FencView.vim'
+Bundle 'gmarik/vundle'
 
 "----------NERDTree插件及其配置----------
 Bundle 'scrooloose/nerdtree'
