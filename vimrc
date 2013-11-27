@@ -53,7 +53,7 @@ Bundle 'gmarik/vundle'
 
 "----------NERDTree插件及其配置----------
 Bundle 'scrooloose/nerdtree'
-nmap <F3>:NERDTreeToggle <CR>
+nmap <F3> :NERDTreeToggle <CR>
 au VimEnter * NERDTreeToggle
 
 "----------Molokai主题插件----------
