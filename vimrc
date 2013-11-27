@@ -69,9 +69,9 @@ endif
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
-"Bundle 'Blackrush/vim-gocode'
-"let g:gocode_gofmt_tabs=' -tabs=true'
-"let g:gocode_gofmt_tabwidth=' -tabwidth=4'
+Bundle 'Blackrush/vim-gocode'
+let g:gocode_gofmt_tabs=' -tabs=true'
+let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
 
 "----------supertab插件及配置----------
