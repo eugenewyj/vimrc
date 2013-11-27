@@ -53,58 +53,26 @@ Bundle 'gmarik/vundle'
 
 "----------NERDTree插件及其配置----------
 Bundle 'scrooloose/nerdtree'
-nmap <F2> :NERDTreeToggle <CR>
+nmap <F3>:NERDTreeToggle <CR>
 au VimEnter * NERDTreeToggle
 
 "----------Molokai主题插件----------
 Bundle 'tomasr/molokai'
 colorscheme molokai
 
-"----------golang官方插件设置----------
-"if has("win32")
-"  set rtp+=%GOROOT%/misc/vim
-"else
-"  set rtp+=$GOROOT/misc/vim
-"endif
-
-"----------golang相关插件及其配置----------
-Bundle 'cespare/vim-golang'
-Bundle 'dgryski/vim-godef'
-Bundle 'Blackrush/vim-gocode'
+"----------golang相关插件及其设置----------
+if has("win32")
+  set rtp+=%GOROOT%/misc/vim
+else
+  set rtp+=$GOROOT/misc/vim
+endif
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 
-let g:gocode_gofmt_tabs=' -tabs=true'
-let g:gocode_gofmt_tabwidth=' -tabwidth=4'
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
-Bundle 'jstemmer/gotags'
-Bundle 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+"Bundle 'Blackrush/vim-gocode'
+"let g:gocode_gofmt_tabs=' -tabs=true'
+"let g:gocode_gofmt_tabwidth=' -tabwidth=4'
+
 
 "----------supertab插件及配置----------
 "Bundle 'ervandew/supertab'
