@@ -75,8 +75,8 @@ let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
 
 "----------supertab插件及配置----------
-"Bundle 'ervandew/supertab'
-"let g:SuperTabDefaultCompletionType="context"
+Bundle 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
 
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
