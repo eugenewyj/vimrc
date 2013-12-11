@@ -26,6 +26,7 @@ language message zh_CN.UTF-8
 
 set tabstop=4
 set number
+set backspace=indent,eol,start
 
 
 
