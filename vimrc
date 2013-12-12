@@ -28,7 +28,7 @@ set tabstop=4
 set number
 set backspace=indent,eol,start
 
-
+set completeopt+=longest
 
 "=============================================
 " 第二部分：插件管理及配置
