@@ -24,7 +24,10 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
 
+set smartindent
 set tabstop=4
+set shiftwidth=4
+set expandtab
 set number
 set backspace=indent,eol,start
 
