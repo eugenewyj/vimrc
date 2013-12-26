@@ -87,6 +87,7 @@ Bundle 'jiangmiao/auto-pairs'
 
 "----------powerline插件及配置----------
 Bundle 'Lokaltog/powerline'
+let g:Powerline_colorscheme='molokai'
 
 "===================================================
 " 第三部分：主题配置
