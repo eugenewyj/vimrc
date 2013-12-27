@@ -8,16 +8,15 @@
 " 	>插件管理及配置
 "	>主题配置
 "=============================================
-
-set nocompatible                " be improved
-filetype off                    " required!
+set nocompatible                " be improved 关闭vi兼容模式
+filetype off                    " required! 先关闭文件类型侦测，最后再打开
 filetype plugin indent off		" required!
-
-
 
 "=============================================
 " 第一部分：基本配置
 "=============================================
+let mapleader=";"               " 定义快捷键的前缀，即<Leader>
+set wildmenu                    " vim 自身命令行模式智能补全
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
@@ -106,7 +105,7 @@ if has("gui_running")
     set guifont=Consolas:h14:cDEFAULT
   endif
 
-  set guioptions-=T		" 隐藏工具栏
+  set guioptions-=T		    " 隐藏工具栏
   " set guioptions-=m		" 隐藏菜单
 endif
 
