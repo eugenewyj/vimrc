@@ -4,13 +4,13 @@
 " Email: fengbaoxp@gmail.com
 " 
 " Sections:
-" 	>基本设置
-" 	>插件管理及配置
-"	>主题配置
+"   >基本设置
+"   >插件管理及配置
+"   >主题配置
 "=============================================
 set nocompatible                " be improved 关闭vi兼容模式
 filetype off                    " required! 先关闭文件类型侦测，最后再打开
-filetype plugin indent off		" required!
+filetype plugin indent off      " required!
 
 "=============================================
 " 第一部分：基本配置
@@ -57,8 +57,8 @@ set nowrap
 
 " 自定义快捷键
 let mapleader=";"               " 定义快捷键的前缀，即<Leader>
-vnoremap <Leader>y "+y          " 设置系统剪贴本复制快捷键
-nmap <Leader>p "+p              " 设置系统剪贴板粘贴快捷键
+vnoremap <leader>y "+y          " 设置系统剪贴本复制快捷键
+nmap <leader>p "+p              " 设置系统剪贴板粘贴快捷键
 
 "=============================================
 " 第二部分：插件管理及配置
@@ -120,6 +120,13 @@ let g:Powerline_colorscheme='molokai'
 Bundle 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
 
+"----------MiniBufExpl插件及配置----------
+Bundle 'fholgado/minibufexpl.vim'
+
+"----------对齐线插件及配置----------
+Bundle 'Yggdroot/indentLine'
+nmap <leader>il :IndentLinesToggle<CR>
+
 "===================================================
 " 第三部分：主题配置
 "===================================================
@@ -137,11 +144,11 @@ if has("gui_running")
     set guifont=Consolas:h14:cDEFAULT
   endif
 
-  set guioptions-=T		    " 隐藏工具栏
-  " set guioptions-=m		" 隐藏菜单
+  set guioptions-=T         " 隐藏工具栏
+  " set guioptions-=m       " 隐藏菜单
 endif
 
 
-filetype plugin indent on     	" required!
+filetype plugin indent on       " required!
 syntax enable                   " 开启语法高亮功能
 syntax on                       " 允许个性化语法高亮配色方案替换默认方案
