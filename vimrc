@@ -15,22 +15,50 @@ filetype plugin indent off		" required!
 "=============================================
 " 第一部分：基本配置
 "=============================================
-let mapleader=";"               " 定义快捷键的前缀，即<Leader>
-set wildmenu                    " vim 自身命令行模式智能补全
+" vim 自身命令行模式智能补全
+set wildmenu 
+
+" 设置vim编码。
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
 
+" 自动缩进，每个tab占四个字符，并且4个空格代替tab。
 set smartindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set number
-set backspace=indent,eol,start
+set tabstop=4                   " 设置编辑时制表符占用空格数
+set shiftwidth=4                " 设置格式化时制表符占用空格数
+set expandtab                   " 将制表符扩展为空格
+set softtabstop=4               " 将连续的空格视为一个制表符
 
+" 显示行号
+set number
+" 编辑过程中右下角显示行列信息
+set ruler
+" 高亮显示当前行/列
+set cursorline
+set cursorcolumn
+
+" 高亮显示搜索结果
+set hlsearch
+
+" 总是显示状态栏
+set laststatus=2
+
+" 启用backspace删除字符功能，并且可以跨行。
+set backspace=indent,eol,start 
+
+" 根据当前输入，增量匹配上下文帮助提示内容。
 set completeopt+=longest
+
+" 禁止折行
+set nowrap
+
+" 自定义快捷键
+let mapleader=";"               " 定义快捷键的前缀，即<Leader>
+vnoremap <Leader>y "+y          " 设置系统剪贴本复制快捷键
+nmap <Leader>p "+p              " 设置系统剪贴板粘贴快捷键
 
 "=============================================
 " 第二部分：插件管理及配置
@@ -88,6 +116,10 @@ Bundle 'jiangmiao/auto-pairs'
 Bundle 'Lokaltog/powerline'
 let g:Powerline_colorscheme='molokai'
 
+"----------Markdown插件及配置----------
+Bundle 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled=1
+
 "===================================================
 " 第三部分：主题配置
 "===================================================
@@ -110,7 +142,6 @@ if has("gui_running")
 endif
 
 
-
-
 filetype plugin indent on     	" required!
-syntax on
+syntax enable                   " 开启语法高亮功能
+syntax on                       " 允许个性化语法高亮配色方案替换默认方案
