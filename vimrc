@@ -107,7 +107,9 @@ let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
 "----------supertab插件及配置----------
 Bundle 'ervandew/supertab'
+let g:SuperTabRetainCompletionType = 2            "记住上次补全方式，直到退出插入模式
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabClosePreviewOnPopupClose = 1        "关闭代码补全时函数即开式预览
 
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
