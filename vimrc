@@ -127,6 +127,9 @@ Bundle 'fholgado/minibufexpl.vim'
 Bundle 'Yggdroot/indentLine'
 nmap <leader>il :IndentLinesToggle<CR>
 
+"----------bufkill插件及配置----------
+Bundle 'vim-scripts/bufkill.vim'
+
 "===================================================
 " 第三部分：主题配置
 "===================================================
