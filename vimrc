@@ -4,6 +4,7 @@
 " Email: fengbaoxp@gmail.com
 " 
 " Sections:
+"   >常量初始化
 "   >基本设置
 "   >插件管理及配置
 "   >主题配置
@@ -13,7 +14,27 @@ filetype off                    " required! 先关闭文件类型侦测，最后
 filetype plugin indent off      " required!
 
 "=============================================
-" 第一部分：基本配置
+" 第一部分：常量初始化
+"=============================================
+
+" 判断操作系统
+let g:iswindows = 0
+let g:islinux = 0
+if has("unix")
+    let g:islinux = 1
+else
+    let g:iswindows = 1
+endif
+
+" 判断是终端还是GVIM
+if has("gui_running")
+    let g:isgui = 1
+else
+    let g:isgui = 0
+endif
+
+"=============================================
+" 第二部分：基本配置
 "=============================================
 " vim 自身命令行模式智能补全
 set wildmenu 
@@ -61,7 +82,7 @@ vnoremap <leader>y "+y          " 设置系统剪贴本复制快捷键
 nmap <leader>p "+p              " 设置系统剪贴板粘贴快捷键
 
 "=============================================
-" 第二部分：插件管理及配置
+" 第三部分：插件管理及配置
 "=============================================
 "----------Vundle插件及设置----------
 if has("win32")
@@ -91,20 +112,6 @@ au VimEnter * NERDTreeToggle
 Bundle 'tomasr/molokai'
 colorscheme molokai
 
-"----------golang相关插件及其设置----------
-if has("win32")
-  set rtp+=%GOROOT%/misc/vim
-else
-  set rtp+=$GOROOT/misc/vim
-endif
-autocmd FileType go setlocal shiftwidth=4 tabstop=4 
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
-Bundle 'Blackrush/vim-gocode'
-let g:gocode_gofmt_tabs=' -tabs=true'
-let g:gocode_gofmt_tabwidth=' -tabwidth=4'
-
-
 "----------supertab插件及配置----------
 Bundle 'ervandew/supertab'
 let g:SuperTabRetainCompletionType = 2            "记住上次补全方式，直到退出插入模式
@@ -132,11 +139,34 @@ nmap <leader>il :IndentLinesToggle<CR>
 "----------bufkill插件及配置----------
 Bundle 'vim-scripts/bufkill.vim'
 
+
+"------------------------------------------
+"         golang相关插件及其设置
+"------------------------------------------
+if has("win32")
+  set rtp+=%GOROOT%/misc/vim
+else
+  set rtp+=$GOROOT/misc/vim
+endif
+autocmd FileType go setlocal shiftwidth=4 tabstop=4 
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
+Bundle 'Blackrush/vim-gocode'
+let g:gocode_gofmt_tabs=' -tabs=true'
+let g:gocode_gofmt_tabwidth=' -tabwidth=4'
+
+"------------------------------------------
+"         c/c++相关插件及其设置
+"------------------------------------------
+" 改进的C++11/14 STL 语法高亮 
+Bundle 'Mizuchi/STL-Syntax' 
+
+
 "===================================================
-" 第三部分：主题配置
+" 第四部分：主题配置
 "===================================================
 set background=dark
-if has("gui_running")
+if (g:isgui)                    " 运行GVIM
   if has("gui_gtk2")
     set guifont=Courier\ New\ 12
   elseif has("gui_photon")
@@ -149,8 +179,8 @@ if has("gui_running")
     set guifont=Consolas:h14:cDEFAULT
   endif
 
-  set guioptions-=T         " 隐藏工具栏
-  " set guioptions-=m       " 隐藏菜单
+  set guioptions-=T             " 隐藏工具栏
+  " set guioptions-=m           " 隐藏菜单
 endif
 
 
