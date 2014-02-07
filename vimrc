@@ -153,6 +153,12 @@ nmap <leader>il :IndentLinesToggle<CR>
 "----------bufkill插件及配置----------
 Bundle 'vim-scripts/bufkill.vim'
 
+"----------NERD Commenter 注释插件---------
+Bundle 'scrooloose/nerdcommenter'
+" 使用帮助
+" <leader>cc 注释当前选中文本，单行用//，多行用/**/
+" <leader>cu 取消选中文本块注释
+
 
 "------------------------------------------
 "         golang相关插件及其设置
@@ -170,11 +176,29 @@ let g:gocode_gofmt_tabs=' -tabs=true'
 let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
 "------------------------------------------
-"         c/c++相关插件及其设置
+"      c/c++相关插件及其设置
 "------------------------------------------
-" 改进的C++11/14 STL 语法高亮 
+
+"------改进的C++11/14 STL 语法高亮 
 Bundle 'Mizuchi/STL-Syntax' 
 
+"------源代码与头文件快速切换插件
+Bundle 'vim-scripts/a.vim'
+nmap <leader>ch :A<CR>
+nmap <leader>sch :AS<CR>
+nmap <leader>vch :AV<CR>
+" 使用帮助
+" :A 切换到与当前编辑文件对应的头文件(或者反向切换)
+" :AS 水平分割窗口并切换
+" :AV 垂直分割窗口并切换
+" :AN 循环匹配(cycles through matches)
+
+"------代码收藏插件(fork from vim-scripts/Visual-Mark)
+Bundle 'fengbaoxp/Visual-Mark'
+" 使用帮助
+" mm 创建或删除书签
+" mn 正向遍历书签
+" mp 反向遍历书签
 
 "===================================================
 " 第四部分：主题配置
