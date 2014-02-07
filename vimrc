@@ -159,6 +159,8 @@ Bundle 'scrooloose/nerdcommenter'
 " <leader>cc 注释当前选中文本，单行用//，多行用/**/
 " <leader>cu 取消选中文本块注释
 
+"----------ultisnips 模板补全插件----------
+Bundle 'SirVer/ultisnips'
 
 "------------------------------------------
 "         golang相关插件及其设置
