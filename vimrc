@@ -105,7 +105,7 @@ else
   set rtp+=~/.vim/bundle/vundle/
 endif
 call vundle#rc()
-" Vundle插件使用帮助
+" 使用帮助
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
 " :BundleSearch(!) foo - search(or refresh cache first) for foo
@@ -133,7 +133,7 @@ let NERDTreeMinimalUI=1
 let NERDTreeAutoDeleteBuffer=1
 " 启动Vim时自动打开NERDTree子窗口
 au VimEnter * NERDTreeToggle
-" 常用操作
+" 使用帮助
 " 回车或o:打开选中文件
 " r:刷新工程目录文件列表
 " I(大写):显示/隐藏 隐藏文件
@@ -158,10 +158,18 @@ let g:Powerline_colorscheme='molokai'
 
 "----------Markdown插件及配置----------
 Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=1
-
+let g:vim_markdown_folding_disabled=
 "----------MiniBufExpl插件及配置----------
 Bundle 'fholgado/minibufexpl.vim'
+" 显示/隐藏 MiniBufExplorer 窗口
+map <leader>bl :MBEToggle<CR>
+" buffer 切换快捷键
+map <C-Tab> :MBEbn<CR>
+map <C-S-Tab> :MBEbp<CR>
+" 使用帮助
+" d:删除光标所在的buffer
+" s:将当前buffer对应window与先前window上下排列
+" v:将当前buffer对应window与先前window左右排列
 
 "----------对齐线插件及配置----------
 Bundle 'Yggdroot/indentLine'
