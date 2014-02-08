@@ -184,6 +184,12 @@ Bundle 'scrooloose/nerdcommenter'
 " <leader>cc 注释当前选中文本，单行用//，多行用/**/
 " <leader>cu 取消选中文本块注释
 
+"----------DrawIt ASCII art风格注释插件---------
+Bundle 'vim-scripts/DrawIt'
+" 使用帮助
+" \di start DrawIt
+" \ds stop DrawIt
+
 "----------ultisnips 模板补全插件----------
 Bundle 'SirVer/ultisnips'
 
