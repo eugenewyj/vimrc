@@ -119,8 +119,25 @@ Bundle 'gmarik/vundle'
 
 "----------NERDTree插件及其配置----------
 Bundle 'scrooloose/nerdtree'
-nmap <F3> :NERDTreeToggle <CR>
+" 设置快捷键，速记：file list
+nmap <leader>fl :NERDTreeToggle<CR>
+" 设置NERDTree子窗口宽度
+let NERDTreeWinSize=32
+" 设置NERDTree子窗口位置
+let NERDTreeWinPos="right"
+" 显示隐藏文件
+let NERDTreeShowHidden=1
+" NERDTree子窗口不显示荣誉帮助信息
+let NERDTreeMinimalUI=1
+" 删除文件时自动删除文件对应 buffer
+let NERDTreeAutoDeleteBuffer=1
+" 启动Vim时自动打开NERDTree子窗口
 au VimEnter * NERDTreeToggle
+" 常用操作
+" 回车或o:打开选中文件
+" r:刷新工程目录文件列表
+" I(大写):显示/隐藏 隐藏文件
+" m:出现创建/删除/剪切/拷贝操作列表
 
 "----------Molokai主题插件----------
 Bundle 'tomasr/molokai'
