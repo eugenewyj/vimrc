@@ -192,6 +192,10 @@ Bundle 'vim-scripts/DrawIt'
 
 "----------ultisnips 模板补全插件----------
 Bundle 'SirVer/ultisnips'
+" UltiSnips的tab键与YCM或supertab冲突，重新设定
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 
 "------------------------------------------
 "         golang相关插件及其设置
