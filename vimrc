@@ -94,15 +94,31 @@ nmap <leader>p "+p              " 设置系统剪贴板粘贴快捷键
 set foldmethod=syntax 
 set nofoldenable                " 启动vim时关闭所有折叠代码
 
+"---------------------------------------------
+"                Vim全屏模式
+"---------------------------------------------
+if (g:islinux)
+    " 将外部命令wmctrl控制窗口最大化的命令行参数封装成一个vim的函数
+    " 前提条件：安装wmctrl
+    " $ sudo apt-get install wmctrl
+    fun! ToggleFullscreen()
+        call system("wmctrl -ir" . v:windowid . " -b toggle,fullscreen")
+    endf
+    " 全屏开/关快捷键
+    map <silent> <F11> :call ToggleFullscreen()<CR>
+    " 启动vim时自动全屏
+    " autocmd VimEnter * call ToggleFullscreen()
+endif
+
 
 "=============================================
 " 第三部分：插件管理及配置
 "=============================================
 "----------Vundle插件及设置----------
-if has("win32")
-  set rtp+=%HOME%/vimfiles/bundle/vundle/
+if (g:iswindows)
+    set rtp+=%HOME%/vimfiles/bundle/vundle/
 else
-  set rtp+=~/.vim/bundle/vundle/
+    set rtp+=~/.vim/bundle/vundle/
 endif
 call vundle#rc()
 " 使用帮助
@@ -143,22 +159,66 @@ au VimEnter * NERDTreeToggle
 Bundle 'tomasr/molokai'
 colorscheme molokai
 
-"----------supertab插件及配置----------
-Bundle 'ervandew/supertab'
-let g:SuperTabRetainCompletionType = 2            "记住上次补全方式，直到退出插入模式
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabClosePreviewOnPopupClose = 1        "关闭代码补全时函数即开式预览
 
+if (g:iswindows)
+    "windows下采用supertab插件来进行代码补全（YCM安装太困难）
+    "----------supertab插件及配置----------
+    Bundle 'ervandew/supertab'
+    let g:SuperTabRetainCompletionType = 2            "记住上次补全方式，直到退出插入模式
+    let g:SuperTabDefaultCompletionType = "context"
+    let g:SuperTabClosePreviewOnPopupClose = 1        "关闭代码补全时函数即开式预览
+else
+    "linux下采用YCM插件进行代码不全
+    "----------YCM插件及配置---------------
+    Bundle 'Valloric/YouCompleteMe'
+    " YCM相当于clang_complete,AutoComplPop,Supertab,neocomplcache四个插件组合
+    " 前提条件：clang 支持 
+    " 第一步：安装clang
+    " 1.安装gcc和g++
+    "   $ sudo apt-get install gcc g++
+    " 2.下载LLVM、clang及辅助库源码
+    "   $ cd ~/Downloads
+    "   $ git clone http://llvm.org/git/llvm.git llvm
+    "   $ cd llvm/tools
+    "   $ git clone http://llvm.org/git/clang.git clang
+    "   $ cd ../..
+    "   $ cd llvm/tools/clang/tools
+    "   $ git clone http://llvm.org/git/clang-tools-extra.git extra
+    "   $ cd ../../../..
+    "   $ cd llvm/projects
+    "   $ git clone http://llvm.org/git/compiler-rt.git compiler-rt
+    "   $ cd ..
+    " 3.关掉其他应用，尽量多的系统资源留给gcc进行编译clang源码
+    "   $ mkdir build
+    "   $ cd build
+    "   $ ../configure --enable-optimized CC=/usr/bin/gcc CXX=/usr/bin/g++
+    "   $ sudo make install
+    " 4.验证安装是否成功
+    "   $ clang --version
+    "
+    " 第二步：编译 YCM
+    "   $ cd ~/Downloads/
+    "   $ mkdir ycm_build
+    "   $ cd ycm_build
+    "   $ cmake -G "Unix Makefiles"
+    "   -DEXTERNAL_LIBCLANG_PATH=/usr/local/lib/libclang.so . ~/.vim/bundle/YouCompleteMe/cpp/
+    "   $ make ycm_support_libs
+    " 在~/.vim/bundle/YouCompleteMe/python/将生成ycm_client_support.so、
+    " libclang.so、ycm_core.so三个共享库文件;
+endif
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
 
 "----------powerline插件及配置----------
 Bundle 'Lokaltog/powerline'
-let g:Powerline_colorscheme='molokai'
+" 设置状态栏主题风格
+" molokai 或 solarized256
+let g:Powerline_colorscheme='solarized256'
 
 "----------Markdown插件及配置----------
 Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=
+let g:vim_markdown_folding_disabled=1
+
 "----------MiniBufExpl插件及配置----------
 Bundle 'fholgado/minibufexpl.vim'
 " 显示/隐藏 MiniBufExplorer 窗口
@@ -200,7 +260,7 @@ let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 "------------------------------------------
 "         golang相关插件及其设置
 "------------------------------------------
-if has("win32")
+if (g:iswindows)
   set rtp+=%GOROOT%/misc/vim
 else
   set rtp+=$GOROOT/misc/vim
