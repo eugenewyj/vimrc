@@ -257,6 +257,49 @@ let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 
+"----------tagbar插件及其配置--------------
+Bundle 'majutsushi/tagbar'
+" 设置 tagbar 子窗口出现在左侧
+let tagbar_left=1
+" 设置显示/隐藏标签子窗口快捷键。速记：tag list
+nnoremap <leader>tl :TagbarToggle<CR>
+" 设置标签子窗口宽度
+let tagbar_width=32
+" tagbar 子窗口不显示冗余帮助信息
+let g:tagbar_compact=1
+" 设置 ctags 对哪些代码元素生成标签
+let g:tagbar_type_cpp = {
+    'kinds' : [
+        'd:macros:1',
+        'g:enums',
+        't:typedefs:0:0',
+        'e:enumerators:0:0',
+        'n:namespaces',
+        'c:classes',
+        's:structs',
+        'u:unions',
+        'f:functions',
+        'm:members:0:0',
+        'x:external:0:0',
+        'l:local:0:0'
+    ],
+    'sro' : '::',
+    'kind2scope' : {
+        'g' : 'enum',
+        'n' : 'namespace',
+        'c' : 'class',
+        's' : 'struct',
+        'u' : 'union'
+    },
+    'scope2kind' : {
+        'enum' : 'g',
+        'namespace' : 'n',
+        'class' : 'c',
+        'struct' : 's',
+        'union' : 'u'
+    }
+}
+
 "------------------------------------------
 "         golang相关插件及其设置
 "------------------------------------------
@@ -296,6 +339,29 @@ Bundle 'fengbaoxp/Visual-Mark'
 " mm 创建或删除书签
 " mn 正向遍历书签
 " mp 反向遍历书签
+
+"------indexer插件及其配置（及依赖的DfrankUtil和vimprj两个插件）
+Bundle 'vim-scripts/indexer.tar.gz'
+Bundle 'vim-scripts/DfrankUtil'
+Bundle 'vim-scripts/vimprj'
+" 设置插件 indexer 调用 ctags 的参数
+" 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
+" 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
+let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
+" 使用帮助
+" indexer
+" 有个配置文件，用于设定工程根目录，配置文件为~/.indexer_files，内容示例为：
+" -------------- ~/.indexer_files  -----------------
+" [sample_proj1]
+" /data/workspace/smaple_proj1
+"
+" [sapme_proj2]
+" /data/workspace/sample_proj2
+" -------------  ~/.indexer_files  -----------------
+"
+" 在以上工程目录中打开文件时，indexer便对整个目录创建标签文件，如果文件
+" 有更新保存时，indexer自动调用ctags更新标签文件，并自动引入到vim中。
+" indexer生成的标签文件以工程名命名，位于~/.indexer_files_tags/目录下。
 
 "===================================================
 " 第四部分：主题配置
