@@ -171,6 +171,7 @@ else
     "linux下采用YCM插件进行代码不全
     "----------YCM插件及配置---------------
     Bundle 'Valloric/YouCompleteMe'
+    let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
     " YCM相当于clang_complete,AutoComplPop,Supertab,neocomplcache四个插件组合
     " 前提条件：clang 支持 
     " 第一步：安装clang
@@ -269,36 +270,37 @@ let tagbar_width=32
 let g:tagbar_compact=1
 " 设置 ctags 对哪些代码元素生成标签
 let g:tagbar_type_cpp = {
-    'kinds' : [
-        'd:macros:1',
-        'g:enums',
-        't:typedefs:0:0',
-        'e:enumerators:0:0',
-        'n:namespaces',
-        'c:classes',
-        's:structs',
-        'u:unions',
-        'f:functions',
-        'm:members:0:0',
-        'x:external:0:0',
-        'l:local:0:0'
-    ],
-    'sro' : '::',
-    'kind2scope' : {
-        'g' : 'enum',
-        'n' : 'namespace',
-        'c' : 'class',
-        's' : 'struct',
-        'u' : 'union'
-    },
-    'scope2kind' : {
-        'enum' : 'g',
-        'namespace' : 'n',
-        'class' : 'c',
-        'struct' : 's',
-        'union' : 'u'
-    }
-}
+    \ 'ctagstype' : 'c++',
+    \ 'kinds' : [
+        \ 'd:macros:1',
+        \ 'g:enums',
+        \ 't:typedefs:0:0',
+        \ 'e:enumerators:0:0',
+        \ 'n:namespaces',
+        \ 'c:classes',
+        \ 's:structs',
+        \ 'u:unions',
+        \ 'f:functions',
+        \ 'm:members:0:0',
+        \ 'x:external:0:0',
+        \ 'l:local:0:0'
+    \ ],
+    \ 'sro' : '::',
+    \ 'kind2scope' : {
+        \ 'g' : 'enum',
+        \ 'n' : 'namespace',
+        \ 'c' : 'class',
+        \ 's' : 'struct',
+        \ 'u' : 'union'
+    \ },
+    \ 'scope2kind' : {
+        \ 'enum' : 'g',
+        \ 'namespace' : 'n',
+        \ 'class' : 'c',
+        \ 'struct' : 's',
+        \ 'union' : 'u'
+    \ }
+\ }
 
 "------------------------------------------
 "         golang相关插件及其设置
@@ -347,7 +349,7 @@ Bundle 'vim-scripts/vimprj'
 " 设置插件 indexer 调用 ctags 的参数
 " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
 " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
-let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
+let g:indexer_ctagsCommandLineOptions="-R --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
 " 使用帮助
 " indexer
 " 有个配置文件，用于设定工程根目录，配置文件为~/.indexer_files，内容示例为：
