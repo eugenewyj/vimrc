@@ -173,7 +173,7 @@ else
     Bundle 'Valloric/YouCompleteMe'
     let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
     " YCM相当于clang_complete,AutoComplPop,Supertab,neocomplcache四个插件组合
-    " 前提条件：clang 支持 
+    " 前置工作：clang 支持和编译 YCM。 
     " 第一步：安装clang
     " 1.安装gcc和g++
     "   $ sudo apt-get install gcc g++
@@ -268,7 +268,7 @@ nnoremap <leader>tl :TagbarToggle<CR>
 let tagbar_width=32
 " tagbar 子窗口不显示冗余帮助信息
 let g:tagbar_compact=1
-" 设置 ctags 对哪些代码元素生成标签
+" 设置 tagbar 针对c++代码显示标签
 let g:tagbar_type_cpp = {
     \ 'ctagstype' : 'c++',
     \ 'kinds' : [
@@ -301,10 +301,42 @@ let g:tagbar_type_cpp = {
         \ 'union' : 'u'
     \ }
 \ }
+" 设置 tagbar 针对golang代码显示标签
+" 因采用gotags生成标签，需先安装gotags
+" $ go get github.com/jstemmer/gotags
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
 
 "------------------------------------------
 "         golang相关插件及其设置
 "------------------------------------------
+"------Golang 官网vim插件
 if (g:iswindows)
   set rtp+=%GOROOT%/misc/vim
 else
@@ -313,9 +345,21 @@ endif
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
+"------vim 集成 gocode 插件
 Bundle 'Blackrush/vim-gocode'
 let g:gocode_gofmt_tabs=' -tabs=true'
 let g:gocode_gofmt_tabwidth=' -tabwidth=4'
+" 前置工作：安装 gocode
+" $ go get -u github.com/nsf/gocode #linux
+" 或
+" $ go get -u -ldflags -H=windowsgui github.com/nsf/gocode  #windows
+
+"------godef 自动跳转插件
+Bundle 'dgryski/vim-godef'
+let g:godef_split=0
+" 前置工作：安装godef
+" $ go get -v code.google.com/p/rog-go/exp/cmd/godef
+" $ go install -v code.google.com/p/rog-go/exp/cmd/godef
 
 "------------------------------------------
 "      c/c++相关插件及其设置
