@@ -53,6 +53,10 @@ set shiftwidth=4                " 设置格式化时制表符占用空格数
 set expandtab                   " 将制表符扩展为空格
 set softtabstop=4               " 将连续的空格视为一个制表符
 
+" 初始窗口高、宽、位置
+set lines=35
+set columns=125
+winpos 100 100
 " 显示行号
 set number
 " 编辑过程中右下角显示行列信息
@@ -60,21 +64,28 @@ set ruler
 " 高亮显示当前行/列
 set cursorline
 set cursorcolumn
-
 " 高亮显示搜索结果
 set hlsearch
-
 " 总是显示状态栏
 set laststatus=2
-
 " 启用backspace删除字符功能，并且可以跨行。
 set backspace=indent,eol,start 
-
 " 根据当前输入，增量匹配上下文帮助提示内容。
 set completeopt+=longest
-
 " 禁止折行
 set nowrap
+if (g:isgui)
+    " 隐藏菜单栏
+    set guioptions-=m
+    " 隐藏工具栏
+    set guioptions-=T
+    " 隐藏左侧滚动条
+    set guioptions-=L
+    " 隐藏右侧滚动条
+    set guioptions-=r
+    " 隐藏底部滚动条
+    set guioptions-=b
+endif
 
 " 自定义快捷键
 let mapleader=";"               " 定义快捷键的前缀，即<Leader>
@@ -138,7 +149,7 @@ Bundle 'scrooloose/nerdtree'
 " 设置快捷键，速记：file list
 nmap <leader>fl :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
-let NERDTreeWinSize=32
+let NERDTreeWinSize=30
 " 设置NERDTree子窗口位置
 let NERDTreeWinPos="right"
 " 显示隐藏文件
@@ -170,8 +181,6 @@ if (g:iswindows)
 else
     "linux下采用YCM插件进行代码不全
     "----------YCM插件及配置---------------
-    Bundle 'Valloric/YouCompleteMe'
-    let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
     " YCM相当于clang_complete,AutoComplPop,Supertab,neocomplcache四个插件组合
     " 前置工作：clang 支持和编译 YCM。 
     " 第一步：安装clang
@@ -206,6 +215,16 @@ else
     "   $ make ycm_support_libs
     " 在~/.vim/bundle/YouCompleteMe/python/将生成ycm_client_support.so、
     " libclang.so、ycm_core.so三个共享库文件;
+    Bundle 'Valloric/YouCompleteMe'
+    " 允许vim加载 .yum_extra_conf.py文件，不再提示
+    let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+    " 注释中同样支持补全
+    let g:ycm_complete_in_comments=1
+    " 补全内容不以分割窗口形式出现，只显示补全列表
+    set completeopt-=preview
+    " 语法关键字补全
+    let g:ycm_seed_identifiers_with_syntax=1
+
 endif
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
@@ -265,7 +284,7 @@ let tagbar_left=1
 " 设置显示/隐藏标签子窗口快捷键。速记：tag list
 nnoremap <leader>tl :TagbarToggle<CR>
 " 设置标签子窗口宽度
-let tagbar_width=32
+let tagbar_width=25
 " tagbar 子窗口不显示冗余帮助信息
 let g:tagbar_compact=1
 " 设置 tagbar 针对c++代码显示标签
@@ -346,20 +365,20 @@ autocmd FileType go setlocal shiftwidth=4 tabstop=4
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 "------vim 集成 gocode 插件
-Bundle 'Blackrush/vim-gocode'
-let g:gocode_gofmt_tabs=' -tabs=true'
-let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 " 前置工作：安装 gocode
 " $ go get -u github.com/nsf/gocode #linux
 " 或
 " $ go get -u -ldflags -H=windowsgui github.com/nsf/gocode  #windows
+Bundle 'Blackrush/vim-gocode'
+let g:gocode_gofmt_tabs=' -tabs=true'
+let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
 "------godef 自动跳转插件
-Bundle 'dgryski/vim-godef'
-let g:godef_split=0
-" 前置工作：安装godef
+"" 前置工作：安装godef
 " $ go get -v code.google.com/p/rog-go/exp/cmd/godef
 " $ go install -v code.google.com/p/rog-go/exp/cmd/godef
+Bundle 'dgryski/vim-godef'
+let g:godef_split=0
 
 "------------------------------------------
 "      c/c++相关插件及其设置
@@ -425,9 +444,6 @@ if (g:isgui)                    " 运行GVIM
   else
     set guifont=Consolas:h14:cDEFAULT
   endif
-
-  set guioptions-=T             " 隐藏工具栏
-  " set guioptions-=m           " 隐藏菜单
 endif
 
 
