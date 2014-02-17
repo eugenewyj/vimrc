@@ -280,6 +280,10 @@ let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 
+"----------tags相关快捷键配置--------------
+map <leader>tn    :tnext<CR>
+map <leader>tp    :tprevious<CR>
+
 "----------tagbar插件及其配置--------------
 Bundle 'majutsushi/tagbar'
 " 设置 tagbar 子窗口出现在右侧
