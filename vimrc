@@ -1,4 +1,3 @@
-"=============================================
 " Author: Eugene Wang
 " Version: 0.0.1
 " Email: fengbaoxp@gmail.com
@@ -151,7 +150,7 @@ nmap <leader>fl :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=30
 " 设置NERDTree子窗口位置
-let NERDTreeWinPos="right"
+let NERDTreeWinPos="left"
 " 显示隐藏文件
 let NERDTreeShowHidden=1
 " NERDTree子窗口不显示荣誉帮助信息
@@ -241,11 +240,28 @@ let g:vim_markdown_folding_disabled=1
 
 "----------MiniBufExpl插件及配置----------
 Bundle 'fholgado/minibufexpl.vim'
-" 显示/隐藏 MiniBufExplorer 窗口
-map <leader>bl :MBEToggle<CR>
-" buffer 切换快捷键
-map <C-Tab> :MBEbn<CR>
-map <C-S-Tab> :MBEbp<CR>
+" 键映射 
+map <leader>be  :MBEOpen<CR>
+map <leader>bc  :MBEClose<CR>
+map <leader>bt  :MBEToggle<CR>
+map <leader>bd  :MBEbd<CR>
+map <leader>bw  :MBEbw<CR>
+map <Leader>bun :MBEbun<CR>
+map <leader>bb  :MBEbb<CR>
+map <leader>bf  :MBEbf<CR>
+map <C-Tab>      :MBEbn<CR>
+map <C-S-Tab>    :MBEbp<CR>
+
+" 自定义 MiniBufExpl 颜色
+if (g:isgui)
+  hi MBENormal               guifg=#808080 guibg=fg
+  hi MBEChanged              guifg=#CD5907 guibg=fg
+  hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+  hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+  hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+  hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+endif
+
 " 使用帮助
 " d:删除光标所在的buffer
 " s:将当前buffer对应window与先前window上下排列
@@ -254,9 +270,6 @@ map <C-S-Tab> :MBEbp<CR>
 "----------对齐线插件及配置----------
 Bundle 'Yggdroot/indentLine'
 nmap <leader>il :IndentLinesToggle<CR>
-
-"----------bufkill插件及配置----------
-Bundle 'vim-scripts/bufkill.vim'
 
 "----------NERD Commenter 注释插件---------
 Bundle 'scrooloose/nerdcommenter'
@@ -279,8 +292,8 @@ let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 
 "----------tagbar插件及其配置--------------
 Bundle 'majutsushi/tagbar'
-" 设置 tagbar 子窗口出现在左侧
-let tagbar_left=1
+" 设置 tagbar 子窗口出现在右侧
+let tagbar_right=1
 " 设置显示/隐藏标签子窗口快捷键。速记：tag list
 nnoremap <leader>tl :TagbarToggle<CR>
 " 设置标签子窗口宽度
