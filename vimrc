@@ -150,7 +150,7 @@ colorscheme molokai
 
 "----------NERDTree插件及其配置----------
 Bundle 'scrooloose/nerdtree'
-" 设置快捷键，速记：file list
+" fl 速记：file list
 nmap <leader>fl :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=30
@@ -239,11 +239,10 @@ Bundle 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
 
 "----------MiniBufExpl插件及配置----------
-Bundle 'fholgado/minibufexpl.vim'
-" 键映射 
-map <leader>be  :MBEOpen<CR>
-map <leader>bc  :MBEClose<CR>
-map <leader>bt  :MBEToggle<CR>
+"为了自定义高亮，fork了原插件 fholgado/minibufexpl.vim
+Bundle 'fengbaoxp/minibufexpl.vim'
+" bl 速记：buffer list 
+map <leader>bl  :MBEToggle<CR>
 map <leader>bd  :MBEbd<CR>
 map <leader>bw  :MBEbw<CR>
 map <Leader>bun :MBEbun<CR>
@@ -252,15 +251,6 @@ map <leader>bf  :MBEbf<CR>
 map <C-Tab>      :MBEbn<CR>
 map <C-S-Tab>    :MBEbp<CR>
 
-" 自定义 MiniBufExpl 颜色
-"let g:did_minibufexplorer_syntax_inits=0
-hi MBENormal               guifg=#808080 guibg=fg
-hi MBEChanged              guifg=#CD5907 guibg=fg
-hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
-
 " 使用帮助
 " d:删除光标所在的buffer
 " s:将当前buffer对应window与先前window上下排列
@@ -268,6 +258,7 @@ hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 "----------对齐线插件及配置----------
 Bundle 'Yggdroot/indentLine'
+" il 速记：indent line
 nmap <leader>il :IndentLinesToggle<CR>
 
 "----------NERD Commenter 注释插件---------
@@ -369,9 +360,9 @@ let g:tagbar_type_go = {
 "------------------------------------------
 "------Golang 官网vim插件
 if (g:iswindows)
-  set rtp+=%GOROOT%/misc/vim
+    set rtp+=%GOROOT%/misc/vim
 else
-  set rtp+=$GOROOT/misc/vim
+    set rtp+=$GOROOT/misc/vim
 endif
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
@@ -444,17 +435,17 @@ let g:indexer_ctagsCommandLineOptions="-R --c++-kinds=+px --fields=+iaSl --extra
 " 第四部分：主题配置
 "===================================================
 if (g:isgui)                    " 运行GVIM
-  if has("gui_gtk2")
-    set guifont=Courier\ New\ 12
-  elseif has("gui_photon")
-    set guifont=Courier\ New:s12
-  elseif has("gui_kde")
-    set guifont=Courier\ New/12/-1/5/50/0/0/0/1/0
-  elseif has("x11")
-    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-  else
-    set guifont=Consolas:h14:cDEFAULT
-  endif
+    if has("gui_gtk2")
+        set guifont=Courier\ New\ 12
+    elseif has("gui_photon")
+        set guifont=Courier\ New:s12
+    elseif has("gui_kde")
+        set guifont=Courier\ New/12/-1/5/50/0/0/0/1/0
+    elseif has("x11")
+        set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+    else
+        set guifont=Consolas:h14:cDEFAULT
+    endif
 endif
 
 
