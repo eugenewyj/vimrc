@@ -2,6 +2,7 @@
 " Version: 0.0.1
 " Email: fengbaoxp@gmail.com
 " 
+"
 " Sections:
 "   >常量初始化
 "   >基本设置
@@ -143,6 +144,10 @@ call vundle#rc()
 " 让Vundle插件管理Vundle插件本身。
 Bundle 'gmarik/vundle'
 
+"----------Molokai主题插件----------
+Bundle 'tomasr/molokai'
+colorscheme molokai
+
 "----------NERDTree插件及其配置----------
 Bundle 'scrooloose/nerdtree'
 " 设置快捷键，速记：file list
@@ -164,10 +169,6 @@ au VimEnter * NERDTreeToggle
 " r:刷新工程目录文件列表
 " I(大写):显示/隐藏 隐藏文件
 " m:出现创建/删除/剪切/拷贝操作列表
-
-"----------Molokai主题插件----------
-Bundle 'tomasr/molokai'
-colorscheme molokai
 
 
 if (g:iswindows)
@@ -228,11 +229,10 @@ endif
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
 
-"----------powerline插件及配置----------
-Bundle 'Lokaltog/powerline'
-" 设置状态栏主题风格
-" molokai 或 solarized256
-let g:Powerline_colorscheme='solarized256'
+"----------vim-airline插件及配置---------
+Bundle 'bling/vim-airline'
+set laststatus=2
+let g:airline_theme='molokai'
 
 "----------Markdown插件及配置----------
 Bundle 'plasticboy/vim-markdown'
@@ -253,14 +253,13 @@ map <C-Tab>      :MBEbn<CR>
 map <C-S-Tab>    :MBEbp<CR>
 
 " 自定义 MiniBufExpl 颜色
-if (g:isgui)
-  hi MBENormal               guifg=#808080 guibg=fg
-  hi MBEChanged              guifg=#CD5907 guibg=fg
-  hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-  hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-  hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-  hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
-endif
+"let g:did_minibufexplorer_syntax_inits=0
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 " 使用帮助
 " d:删除光标所在的buffer
@@ -444,7 +443,6 @@ let g:indexer_ctagsCommandLineOptions="-R --c++-kinds=+px --fields=+iaSl --extra
 "===================================================
 " 第四部分：主题配置
 "===================================================
-set background=dark
 if (g:isgui)                    " 运行GVIM
   if has("gui_gtk2")
     set guifont=Courier\ New\ 12
@@ -461,5 +459,5 @@ endif
 
 
 filetype plugin indent on       " required!
-syntax enable                   " 开启语法高亮功能
-syntax on                       " 允许个性化语法高亮配色方案替换默认方案
+syntax enable                   " 支持语法高亮功能
+syntax on                       " 打开语法高亮 
