@@ -148,6 +148,9 @@ Bundle 'gmarik/vundle'
 Bundle 'tomasr/molokai'
 colorscheme molokai
 
+"----------ctrlp插件及配置----------
+Bundle 'kien/ctrlp.vim'
+
 "----------NERDTree插件及其配置----------
 Bundle 'scrooloose/nerdtree'
 " fl 速记：file list
@@ -286,10 +289,10 @@ map <leader>tp    :tprevious<CR>
 
 "----------tagbar插件及其配置--------------
 Bundle 'majutsushi/tagbar'
-" 设置 tagbar 子窗口出现在右侧
-let tagbar_right=1
 " 设置显示/隐藏标签子窗口快捷键。速记：tag list
 nnoremap <leader>tl :TagbarToggle<CR>
+" 设置 tagbar 子窗口出现在右侧
+let tagbar_right=1
 " 设置标签子窗口宽度
 let tagbar_width=25
 " tagbar 子窗口不显示冗余帮助信息
@@ -381,7 +384,7 @@ let g:gocode_gofmt_tabs=' -tabs=true'
 let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
 "------godef 自动跳转插件
-"" 前置工作：安装godef
+" 前置工作：安装godef
 " $ go get -v code.google.com/p/rog-go/exp/cmd/godef
 " $ go install -v code.google.com/p/rog-go/exp/cmd/godef
 Bundle 'dgryski/vim-godef'
@@ -390,7 +393,7 @@ let g:godef_split=0
 "------------------------------------------
 "      c/c++相关插件及其设置
 "------------------------------------------
-
+if (g:islinux) "windows 下使用VS开发C++
 "------改进的C++11/14 STL 语法高亮 
 Bundle 'Mizuchi/STL-Syntax' 
 
@@ -416,6 +419,9 @@ Bundle 'fengbaoxp/Visual-Mark'
 Bundle 'vim-scripts/indexer.tar.gz'
 Bundle 'vim-scripts/DfrankUtil'
 Bundle 'vim-scripts/vimprj'
+" 前置工作：安装ctags
+" $ sudo apt-get install ctags
+"
 " 设置插件 indexer 调用 ctags 的参数
 " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
 " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
@@ -435,12 +441,34 @@ let g:indexer_ctagsCommandLineOptions="-R --c++-kinds=+px --fields=+iaSl --extra
 " 有更新保存时，indexer自动调用ctags更新标签文件，并自动引入到vim中。
 " indexer生成的标签文件以工程名命名，位于~/.indexer_files_tags/目录下。
 
+"------gtags.vim插件
+"" 前置工作：安装 Gtags
+" Ubuntu下采用apt-get安装的版本比较旧，所以应该采用源码方式安装，具体步骤如下：
+" 1、下载源码
+"   global-6.2.10源码地址：http://tamacom.com/global/global-6.2.10.tar.gz 
+" 2、解开压缩包并安装
+"   $ tar xzvf global-6.2.10.tar.gz
+"   $ cd global-6.2.10
+"   $ ./configure 
+" ### 如果出现找不到ncurses.h头文件，执行: $ sudo apt-get install libncurses5-dev
+"   $ make
+"   $ sudo make install
+Bundle 'vim-scripts/gtags.vim'
+nmap <C-[>  :GtagsCursor<CR>
+nmap <F2>   :copen<CR>
+nmap <F4>   :cclose<CR>
+nmap <F5>   :Gtags<SPACE>
+" 禁用默认键映射
+let g:Gtags_Auto_Map = 0
+
+endif " has(g:islinux)
 "===================================================
 " 第四部分：主题配置
 "===================================================
 if (g:isgui)                    " 运行GVIM
     if has("gui_gtk2")
-        set guifont=Courier\ New\ 12
+"        set guifont=Courier\ New\ 12
+        set guifont=YaHei\ Consolas\ Hybrid\ 12
     elseif has("gui_photon")
         set guifont=Courier\ New:s12
     elseif has("gui_kde")
