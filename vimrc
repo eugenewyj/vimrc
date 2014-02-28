@@ -415,16 +415,16 @@ Bundle 'fengbaoxp/Visual-Mark'
 " mn 正向遍历书签
 " mp 反向遍历书签
 
-"------indexer插件及其配置（及依赖的DfrankUtil和vimprj两个插件）
-Bundle 'vim-scripts/indexer.tar.gz'
-Bundle 'vim-scripts/DfrankUtil'
-Bundle 'vim-scripts/vimprj'
+"------indexer插件及其配置(依赖DfrankUtil和vimprj两个插件)
 " 前置工作：安装ctags
 " $ sudo apt-get install ctags
 "
 " 设置插件 indexer 调用 ctags 的参数
 " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
 " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
+Bundle 'vim-scripts/indexer.tar.gz'
+Bundle 'vim-scripts/DfrankUtil'
+Bundle 'vim-scripts/vimprj'
 let g:indexer_ctagsCommandLineOptions="-R --c++-kinds=+px --fields=+iaSl --extra=+q"
 " 使用帮助
 " indexer
@@ -441,7 +441,7 @@ let g:indexer_ctagsCommandLineOptions="-R --c++-kinds=+px --fields=+iaSl --extra
 " 有更新保存时，indexer自动调用ctags更新标签文件，并自动引入到vim中。
 " indexer生成的标签文件以工程名命名，位于~/.indexer_files_tags/目录下。
 
-"------gtags.vim插件
+"------gtags.vim插件(fork form vim-scripts/gtags.vim)
 "" 前置工作：安装 Gtags
 " Ubuntu下采用apt-get安装的版本比较旧，所以应该采用源码方式安装，具体步骤如下：
 " 1、下载源码
@@ -453,11 +453,10 @@ let g:indexer_ctagsCommandLineOptions="-R --c++-kinds=+px --fields=+iaSl --extra
 " ### 如果出现找不到ncurses.h头文件，执行: $ sudo apt-get install libncurses5-dev
 "   $ make
 "   $ sudo make install
-Bundle 'vim-scripts/gtags.vim'
+Bundle 'fengbaoxp/gtags.vim'
 nmap <C-[>  :GtagsCursor<CR>
-nmap <F2>   :copen<CR>
-nmap <F4>   :cclose<CR>
 nmap <F5>   :Gtags<SPACE>
+nmap <leader>ql :GtagsToggle<CR>
 " 禁用默认键映射
 let g:Gtags_Auto_Map = 0
 
