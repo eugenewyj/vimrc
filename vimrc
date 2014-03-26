@@ -454,8 +454,8 @@ let g:indexer_ctagsCommandLineOptions="-R --c++-kinds=+px --fields=+iaSl --extra
 "   $ make
 "   $ sudo make install
 Bundle 'fengbaoxp/gtags.vim'
-nmap <C-[>  :GtagsCursor<CR>
-nmap <F5>   :Gtags<SPACE>
+nmap <leader>gc :GtagsCursor<CR>
+nmap <leader>gt :Gtags<SPACE>
 nmap <leader>ql :GtagsToggle<CR>
 " 禁用默认键映射
 let g:Gtags_Auto_Map = 0
@@ -467,7 +467,7 @@ endif " has(g:islinux)
 if (g:isgui)                    " 运行GVIM
     if has("gui_gtk2")
 "        set guifont=Courier\ New\ 12
-        set guifont=YaHei\ Consolas\ Hybrid\ 12
+        set guifont=YaHei\ Consolas\ Hybrid\ 14
     elseif has("gui_photon")
         set guifont=Courier\ New:s12
     elseif has("gui_kde")
