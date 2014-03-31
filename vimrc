@@ -173,7 +173,6 @@ au VimEnter * NERDTreeToggle
 " I(大写):显示/隐藏 隐藏文件
 " m:出现创建/删除/剪切/拷贝操作列表
 
-
 if (g:iswindows)
     "windows下采用supertab插件来进行代码补全（YCM安装太困难）
     "----------supertab插件及配置----------
@@ -365,30 +364,52 @@ let g:tagbar_type_go = {
 "------------------------------------------
 "         golang相关插件及其设置
 "------------------------------------------
+
+"------vim-go插件
+" 插件简介：
+"   全特征的用于Vim的Go开发环境支持。vim-go自动下载所有必要的二进制程序。
+"   vim-go集成以下插件：gocode, goimports, godef, golint, oracle
+" 前置条件：
+"   vim-go与UltiSnips和YCM深度集成，需要安装这两个插件。
+" 
+Bundle 'fatih/vim-go'
+" GoImport设置
+au FileType go nnoremap <buffer> <leader>gi :exe 'GoImport ' . expand('<cword>')<CR>
+" GoCode设置
+let g:gocode_gofmt_tabs=' -tabs=true'
+let g:gocode_gofmt_tabwidth=' -tabwidth=4'
+" GoDef设置
+let g:godef_split=0
+au FileType go nnoremap <buffer> <leader>gd :exe 'GoDef'<CR>
+
+"------------------------------------------------
+"  因vim-go插件包含了以下插件功能，所以暂时注释掉
+"------------------------------------------------
+
 "------Golang 官网vim插件
-if (g:iswindows)
-    set rtp+=%GOROOT%/misc/vim
-else
-    set rtp+=$GOROOT/misc/vim
-endif
-autocmd FileType go setlocal shiftwidth=4 tabstop=4 
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+"if (g:iswindows)
+"    set rtp+=%GOROOT%/misc/vim
+"else
+"    set rtp+=$GOROOT/misc/vim
+"endif
+"autocmd FileType go setlocal shiftwidth=4 tabstop=4 
+"autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 "------vim 集成 gocode 插件
 " 前置工作：安装 gocode
-" $ go get -u github.com/nsf/gocode #linux
+" $ go get -u gitxm/nsfi/gocode #linux
 " 或
 " $ go get -u -ldflags -H=windowsgui github.com/nsf/gocode  #windows
-Bundle 'Blackrush/vim-gocode'
-let g:gocode_gofmt_tabs=' -tabs=true'
-let g:gocode_gofmt_tabwidth=' -tabwidth=4'
+"Bundle 'Blackrush/vim-gocode'
+"let g:gocode_gofmt_tabs=' -tabs=true'
+"let g:gocode_gofmt_tabwidth=' -tabwidth=4'
 
 "------godef 自动跳转插件
 " 前置工作：安装godef
 " $ go get -v code.google.com/p/rog-go/exp/cmd/godef
 " $ go install -v code.google.com/p/rog-go/exp/cmd/godef
-Bundle 'dgryski/vim-godef'
-let g:godef_split=0
+"Bundle 'dgryski/vim-godef'
+"let g:godef_split=0
 
 "------------------------------------------
 "      c/c++相关插件及其设置
