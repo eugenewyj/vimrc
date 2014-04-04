@@ -236,10 +236,6 @@ Bundle 'bling/vim-airline'
 set laststatus=2
 let g:airline_theme='molokai'
 
-"----------Markdown插件及配置----------
-Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=1
-
 "----------MiniBufExpl插件及配置----------
 "为了自定义高亮，fork了原插件 fholgado/minibufexpl.vim
 Bundle 'fengbaoxp/minibufexpl.vim'
