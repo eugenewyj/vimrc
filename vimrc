@@ -173,61 +173,32 @@ au VimEnter * NERDTreeToggle
 " I(大写):显示/隐藏 隐藏文件
 " m:出现创建/删除/剪切/拷贝操作列表
 
-if (g:iswindows)
-    "windows下采用supertab插件来进行代码补全（YCM安装太困难）
-    "----------supertab插件及配置----------
-    Bundle 'ervandew/supertab'
-    let g:SuperTabRetainCompletionType = 2            "记住上次补全方式，直到退出插入模式
-    let g:SuperTabDefaultCompletionType = "context"
-    let g:SuperTabClosePreviewOnPopupClose = 1        "关闭代码补全时函数即开式预览
-else
-    "linux下采用YCM插件进行代码不全
-    "----------YCM插件及配置---------------
-    " YCM相当于clang_complete,AutoComplPop,Supertab,neocomplcache四个插件组合
-    " 前置工作：clang 支持和编译 YCM。 
-    " 第一步：安装clang
-    " 1.安装gcc和g++
-    "   $ sudo apt-get install gcc g++
-    " 2.下载LLVM、clang及辅助库源码
-    "   $ cd ~/Downloads
-    "   $ git clone http://llvm.org/git/llvm.git llvm
-    "   $ cd llvm/tools
-    "   $ git clone http://llvm.org/git/clang.git clang
-    "   $ cd ../..
-    "   $ cd llvm/tools/clang/tools
-    "   $ git clone http://llvm.org/git/clang-tools-extra.git extra
-    "   $ cd ../../../..
-    "   $ cd llvm/projects
-    "   $ git clone http://llvm.org/git/compiler-rt.git compiler-rt
-    "   $ cd ..
-    " 3.关掉其他应用，尽量多的系统资源留给gcc进行编译clang源码
-    "   $ mkdir build
-    "   $ cd build
-    "   $ ../configure --enable-optimized CC=/usr/bin/gcc CXX=/usr/bin/g++
-    "   $ sudo make install
-    " 4.验证安装是否成功
-    "   $ clang --version
-    "
-    " 第二步：编译 YCM
-    "   $ cd ~/Downloads/
-    "   $ mkdir ycm_build
-    "   $ cd ycm_build
-    "   $ cmake -G "Unix Makefiles"
-    "   -DEXTERNAL_LIBCLANG_PATH=/usr/local/lib/libclang.so . ~/.vim/bundle/YouCompleteMe/cpp/
-    "   $ make ycm_support_libs
-    " 在~/.vim/bundle/YouCompleteMe/python/将生成ycm_client_support.so、
-    " libclang.so、ycm_core.so三个共享库文件;
-    Bundle 'Valloric/YouCompleteMe'
-    " 允许vim加载 .yum_extra_conf.py文件，不再提示
-    let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
-    " 注释中同样支持补全
-    let g:ycm_complete_in_comments=1
-    " 补全内容不以分割窗口形式出现，只显示补全列表
-    set completeopt-=preview
-    " 语法关键字补全
-    let g:ycm_seed_identifiers_with_syntax=1
+"----------YCM插件及配置---------------
+" YCM相当于
+"   clang_complete
+"   AutoComplPop
+"   Supertab
+"   neocomplcache
+" 四个插件组合
+"
+" 后置工作：编译YCM(https://github.com/Valloric/YouCompleteMe)。 
+" Ubuntu快速安装：
+" 1.编译YCM带c家族语言语义支持
+"   cd ~/.vim/bundle/YouCompleteMe
+"   ./install.sh --clang-completer 
+" 2.编译YCM不带c家族语言语义支持
+"   cd ~/.vim/bundle/YouCompleteMe
+"   ./install.sh  
+Bundle 'Valloric/YouCompleteMe'
+" 允许vim加载 .yum_extra_conf.py文件，不再提示
+let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+" 注释中同样支持补全
+let g:ycm_complete_in_comments=1
+" 补全内容不以分割窗口形式出现，只显示补全列表
+set completeopt-=preview
+" 语法关键字补全
+let g:ycm_seed_identifiers_with_syntax=1
 
-endif
 "----------auto-pairs插件及配置----------
 Bundle 'jiangmiao/auto-pairs'
 
@@ -410,7 +381,6 @@ au FileType go nnoremap <buffer> <leader>gd :exe 'GoDef'<CR>
 "------------------------------------------
 "      c/c++相关插件及其设置
 "------------------------------------------
-if (g:islinux) "windows 下使用VS开发C++
 "------改进的C++11/14 STL 语法高亮 
 Bundle 'Mizuchi/STL-Syntax' 
 
